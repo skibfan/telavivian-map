@@ -5,6 +5,7 @@ import router from './routes/routes.ts'
 
 
 const app = express();
+app.use(express.json())
 app.use(cors());
 
 const __dirname = path.resolve()

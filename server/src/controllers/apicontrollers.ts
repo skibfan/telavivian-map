@@ -1,4 +1,5 @@
 import { _getBeachesApi, _getSheltersApi } from "../models/apimodels"
+import { Request, Response } from "express";
 
 // interface BeachApiResponse {
 //     displayFieldName: string;
@@ -80,7 +81,6 @@ import { _getBeachesApi, _getSheltersApi } from "../models/apimodels"
 
 // import { _getBeachesApi, _getSheltersApi } from "../models/apimodels";
 
-// Common structure for spatial reference and geometry
 interface SpatialReference {
     wkid: number;
     latestWkid: number;
@@ -99,7 +99,6 @@ interface Geometry {
     rings?: Array<Array<[number, number]>>;
 }
 
-// Beach-specific attributes
 interface BeachAttributes {
     OBJECTID: number;
     beach_name: string;
@@ -121,7 +120,6 @@ interface BeachAttributes {
     station_num: number;
 }
 
-// Shelter-specific attributes based on your uploaded file
 interface ShelterAttributes {
     oid_mitkan: number;
     ms_miklat: number;
@@ -158,7 +156,6 @@ interface ShelterAttributes {
     date_import: string;
 }
 
-// Generalized attributes with type unions for both beaches and shelters
 type GeneralAttributes = BeachAttributes | ShelterAttributes;
 
 interface Feature {
@@ -166,7 +163,6 @@ interface Feature {
     geometry: Geometry;
 }
 
-// Generalized API Response
 interface GeneralApiResponse {
     displayFieldName: string;
     fieldAliases: Record<string, string>;
@@ -176,8 +172,7 @@ interface GeneralApiResponse {
     features: Feature[];
 }
 
-// Controller for beaches
-export const getBeachesApi = async (_: any, res: any) => {
+export const getBeachesApi = async (_: Request, res: Response) => {
     try {
         const data = await _getBeachesApi() as GeneralApiResponse;
         res.json(data.features);
@@ -187,8 +182,7 @@ export const getBeachesApi = async (_: any, res: any) => {
     }
 }
 
-// Controller for shelters
-export const getSheltersApi = async (_: any, res: any) => {
+export const getSheltersApi = async (_: Request, res: Response) => {
     try {
         const data = await _getSheltersApi() as GeneralApiResponse;
         res.json(data.features);
