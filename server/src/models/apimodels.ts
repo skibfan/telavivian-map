@@ -12,6 +12,11 @@ export const _getSheltersApi = async () => {
     return getDataWithCode('592')
 }
 
+// 834 
+export const _getOutdoorSportsApi = async () => {
+    return getDataWithCode('834')
+}
+
 
 const getDataWithCode = async (layerCode: string) => {
 

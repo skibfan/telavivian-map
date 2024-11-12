@@ -1,4 +1,4 @@
-import { _getBeachesApi, _getSheltersApi } from "../models/apimodels"
+import { _getBeachesApi, _getOutdoorSportsApi, _getSheltersApi } from "../models/apimodels"
 import { Request, Response } from "express";
 
 // interface BeachApiResponse {
@@ -156,7 +156,25 @@ interface ShelterAttributes {
     date_import: string;
 }
 
-type GeneralAttributes = BeachAttributes | ShelterAttributes;
+interface OutDoorSports {
+    oid_mitkan: number;              
+    ms_shefa: number;                
+    rova: string;                    
+    shchuna: string;                 
+    sug: string;                     
+    shem: string;                    
+    ktovet: string;                  
+    x_coord: number;                 
+    y_coord: number;                 
+    lon: number;                     
+    lat: number;                     
+    UniqueId: string;                
+    date_import: string;             
+}
+
+
+
+type GeneralAttributes = BeachAttributes | ShelterAttributes | OutDoorSports;
 
 interface Feature {
     attributes: GeneralAttributes;
@@ -189,5 +207,21 @@ export const getSheltersApi = async (_: Request, res: Response) => {
     } catch (error) {
         console.error("Failed to fetch shelter data:", error);
         res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+
+export const getOutdoorSportsApi = async (_: Request, res: Response) => {
+
+    try {
+        
+    } catch (error) {
+        try {
+            const data = await _getOutdoorSportsApi() as GeneralApiResponse;
+            res.json(data.features);
+        } catch (error) {
+            console.error("Failed to fetch shelter data:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     }
 }
