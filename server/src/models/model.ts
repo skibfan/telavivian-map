@@ -35,30 +35,31 @@ export const _registerNewU = async (email: string, username: string, password: s
 
 // _loginUser
 
-export const _getFavorites = async (username: string) => {
-
+export const _getFavorites = async (email: string) => {
+    
     try {
-        const user = await db('telavivian_users').select('id').where({ username }).first()
+        const user = await db('telavivian_users').select('id').where({ email }).first()
         const userID = user.id
         return await db('telavivian_favorites').select('favorite_item').where({user_id: userID})
     } catch (error) {
-        console.log(`cannot get favorites for ${username}`);
+        console.log(`cannot get favorites for ${email}`);
         console.log(error);
         throw(error)
     }
 }
 
 
-export const _addFavorite = async (username: string, favorite_item: number) => {
+export const _addFavorite = async (user_id: string, favorite_item: number) => {
     let trx
     
-
     try {
         trx = await db.transaction()
-        const user = await db('telavivian_users').select('id').where({ username }).first()
-        const userID = user.id
+        // const user = await db('telavivian_users').select('id').where({ username }).first()
+        // console.log(user);
         
-        const newFavorite = await db('telavivian_favorites').insert({user_id: userID, favorite_item}, ['id','user_id', 'favorite_item']).transacting(trx)
+        // const userID = user.id
+        
+        const newFavorite = await db('telavivian_favorites').insert({user_id, favorite_item}, ['id','user_id', 'favorite_item']).transacting(trx)
         await trx.commit()
         console.log(`favorite ${newFavorite} added successfuly`);
         return newFavorite
@@ -71,13 +72,38 @@ export const _addFavorite = async (username: string, favorite_item: number) => {
     }
 }
 
+export const _removeFavorite = async (user_id: string, favorite_item: number) => {
+    let trx
+    
+    try {
+        trx = await db.transaction()
+        
+        await db('telavivian_favorites')
+        .del()
+        .where({ user_id, favorite_item })
+        
+        .transacting(trx)
+        await trx.commit()
+        return { message: "deleted successfuly", favorite_item }
+    } catch (error) {
+        console.log('favorite not deleted');
+        console.log(error);
+        if (trx) await trx.rollback() 
+        throw(error)
+    }
+}
+
 
 export const _getUserByEmail = async (email: string) => {
+
     try {
-        return await db('telavivian_users')
+        const response = 
+        await db('telavivian_users')
         .select('id', 'email', 'password')
         .where({email: email.toLowerCase()})
         .first()
+        return response
+        
     } catch (error) {
         console.log('no such user, failed to login');
         console.log(error);

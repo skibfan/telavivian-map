@@ -1,0 +1,35 @@
+
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.map-container {
+  display: flex;
+  height: 100vh;
+  margin: 20px;
+}
+.map-container > * {
+  flex: 1;
+  padding: 20px;
+}
+
+.map-container > :first-child {
+  flex: 3;
+}
+.map-container > :last-child {
+  flex: 1;
+  overflow-y: auto;
+} 
