@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
   credentials: true,
-  origin: ["https://telavivian-map.onrender.com"]
+  origin: ["https://telavivian-map.onrender.com", "http://localhost:4173", "http://localhost:5173"]
 }))
 
 const __dirname = path.resolve()

@@ -21,7 +21,7 @@ type OutdoorSportsElementProps = {
 
 
 const OutdoorSportsElement = ({attributes, geometry, favoriteLocations, onlyFavs}: OutdoorSportsElementProps): ReactElement => {
-    
+    const path = import.meta.env.VITE_MY_PATH
     const [isFavorite, setIsFavorite] = useState(favoriteLocations.includes(attributes.oid_mitkan))
 
     const transformCoordinates = (x?: number, y?: number): [number, number] => {
@@ -36,7 +36,7 @@ const OutdoorSportsElement = ({attributes, geometry, favoriteLocations, onlyFavs
     const addToFavorites = async (oid_mitkan: number) => {
         
         try {
-            await axios.post("http://localhost:3001/api/addfavorite", 
+            await axios.post(`${path}/api/addfavorite`, 
             {favorite_item: oid_mitkan},
             {withCredentials: true}
         )
@@ -47,7 +47,7 @@ const OutdoorSportsElement = ({attributes, geometry, favoriteLocations, onlyFavs
 
     const removeFavorite = async (oid_mitkan: number) => {
         try {
-            await axios.post("http://localhost:3001/api/removefavorite", 
+            await axios.post(`${path}/api/removefavorite`, 
                 {favorite_item: oid_mitkan},
                 {withCredentials: true}
             )

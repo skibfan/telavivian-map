@@ -13,6 +13,7 @@ import { Alert } from '@mui/material';
 const Register = (): ReactElement => {
     const [open, setOpen] = useState(false);
     const [registerError, setRegisterError] = useState(false)
+    const path = import.meta.env.VITE_MY_PATH
   
     const handleClickOpen = () => {
       setOpen(true);
@@ -20,7 +21,7 @@ const Register = (): ReactElement => {
   
     const handleClose = async (email: string, username: string, password: string) => {
       try {
-         const regresp = await axios.post('http://localhost:3001/api/register', {
+         const regresp = await axios.post(`${path}/api/register`, {
               email, username, password
           }, 
           {withCredentials: true})
@@ -29,7 +30,7 @@ const Register = (): ReactElement => {
             setRegisterError(true)
           } else {
             
-          const response = await axios.post('http://localhost:3001/api/login', {
+          const response = await axios.post(`${path}/api/login`, {
             email, password
             }, 
             {withCredentials: true})

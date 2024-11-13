@@ -9,7 +9,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { verify } from "../../auth/Auth";
 import OutdoorSportsElement from "./mini-components/OutdoorSportsElement";
-
+import dotenv from 'dotenv'
 
 const MarkerFactory = ():ReactElement => {
 
@@ -25,12 +25,14 @@ const MarkerFactory = ():ReactElement => {
     const onlyFavsToggled = useSelector((state: AppState) => state.flagsReducer.showOnlyFavoritesFlag)
     // const [onlyFavorites, setOnlyFavorites] = useState(false)
 
+    const path = import.meta.env.VITE_MY_PATH
+
 
 
     const fetchfavs = async () => {
         if (await verify()) {
         try {
-            const favResponse = await axios.post("http://localhost:3001/api/getfavorites", 
+            const favResponse = await axios.post("/api/getfavorites", 
                 {},
                 {withCredentials: true}
             )
@@ -46,16 +48,16 @@ const MarkerFactory = ():ReactElement => {
         
         try {
             if (beachesToggled && beachesLocations.length < 1) {
-                const response = await axios.get("http://localhost:3001/api/beaches")
+                const response = await axios.get(`${path}/api/beaches`)
                 setBeachesLocations(response.data)
             }
             if (sheltersToggled && shelterLocations.length < 1) {
-                const response = await axios.get("http://localhost:3001/api/shelters")
+                const response = await axios.get(`${path}/api/shelters`)
                 setShelterLocations(response.data)
             }
 
             if (outdoorSportsToggled && outdoorSportsLocations.length < 1) {
-                const response = await axios.get("http://localhost:3001/api/outdoorsports")
+                const response = await axios.get(`${path}/api/outdoorsports`)
                 setOutdoorSportsLocations(response.data)
             }
 
