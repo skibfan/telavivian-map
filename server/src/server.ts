@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
   credentials: true,
-  origin:"https://telavivian-map.onrender.com"
+  origin: "https://telavivian-map.onrender.com"
 }))
 
 const __dirname = path.resolve()
@@ -18,10 +18,6 @@ const __dirname = path.resolve()
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server listening on ${process.env.PORT || 3001}`);
   });
-  
-  // app.get("/api/:name", (req, res) => {
-  //   res.json({ message: `Hello ${req.params.name}, from server!` });
-  // });
   
   app.use('/api', router)
   // Have Node serve the files for our built React app
