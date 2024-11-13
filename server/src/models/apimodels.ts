@@ -17,7 +17,6 @@ export const _getOutdoorSportsApi = async () => {
     return getDataWithCode('834')
 }
 
-
 const getDataWithCode = async (layerCode: string) => {
 
     try {

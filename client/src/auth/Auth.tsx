@@ -1,13 +1,14 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import Login from "../components/user_account/Login";
 
 type AuthProps = {
-    children: ReactNode
+    children: ReactNode;
+    placeholder: ReactElement | null;
 }
 
 
-const Auth = ({children}: AuthProps) => {
+const Auth = ({children, placeholder}: AuthProps) => {
     const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const Auth = ({children}: AuthProps) => {
         }
     }
 
-    return redirect ? children : <Login/>
+    return redirect ? children : placeholder
 }
 
 export default Auth
