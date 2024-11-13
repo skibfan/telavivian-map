@@ -2,6 +2,7 @@ import L from 'leaflet'
 import { renderToString } from 'react-dom/server';
 // import { FaMapMarkerAlt  } from 'react-icons'
 import { LiaMapPinSolid } from 'react-icons/lia';
+import { PiMapPinAreaLight } from "react-icons/pi";
 
 const shelterHtml = renderToString(
     <LiaMapPinSolid style={{color:'black', fontSize:'24px'}} />
@@ -23,13 +24,24 @@ export const favShelterIcon = L.divIcon({
     iconAnchor: [12, 24]
 })
 
+const outdoorSportsHtml = renderToString(
+    <PiMapPinAreaLight style={{color:'black', fontSize:'24px'}} />
+)
 
+const favOutdoorSportsHtml = renderToString(
+    <PiMapPinAreaLight style={{color:'blue', fontSize:'24px'}} />
+)
 
+export const outdoorSportsIcon = L.divIcon({
+    html: outdoorSportsHtml,
+    className: 'outdoor-sports-icon',
+    iconSize: [24,24],
+    iconAnchor: [12, 24]
+})
 
-const customIcon = new L.Icon({
-    iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-green.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
+export const favOutdoorSportsIcon = L.divIcon({
+    html: favOutdoorSportsHtml,
+    className: 'fav-outdoor-sports-icon',
+    iconSize: [24,24],
+    iconAnchor: [12, 24]
+})

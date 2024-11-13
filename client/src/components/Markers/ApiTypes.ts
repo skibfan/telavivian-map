@@ -62,7 +62,24 @@ export interface ShelterAttributes {
     date_import: string;
 }
 
-export type GeneralAttributes = BeachAttributes | ShelterAttributes;
+export interface OutDoorSportsAttributes {
+    oid_mitkan: number;              
+    ms_shefa: number;                
+    rova: string;                    
+    shchuna: string;                 
+    sug: string;                     
+    shem: string;                    
+    ktovet: string;                  
+    x_coord: number;                 
+    y_coord: number;                 
+    lon: number;                     
+    lat: number;                     
+    UniqueId: string;                
+    date_import: string;    
+}
+
+
+export type GeneralAttributes = BeachAttributes | ShelterAttributes | OutDoorSportsAttributes;
 
 export interface Feature {
     attributes: GeneralAttributes;

@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import { BeachAttributes, ShelterAttributes, Feature } from "./ApiTypes";
+import { BeachAttributes, ShelterAttributes, Feature, OutDoorSportsAttributes } from "./ApiTypes";
 import { useSelector } from "react-redux";
 import { AppState } from "../../app/store";
 import axios from "axios";
@@ -8,17 +8,22 @@ import SheltersElement from "./mini-components/SheltersElement";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import { verify } from "../../auth/Auth";
+import OutdoorSportsElement from "./mini-components/OutdoorSportsElement";
 
 
 
 const MarkerFactory = ():ReactElement => {
 
+    const [favoriteLocations, setFavoriteLocations] = useState<number[]>([])
+
     const [beachesLocations, setBeachesLocations] = useState<Feature[]>([])
     const [shelterLocations, setShelterLocations] = useState<Feature[]>([])
-    const [favoriteLocations, setFavoriteLocations] = useState<number[]>([])
+    const [outdoorSportsLocations, setOutdoorSportsLocations] = useState<Feature[]>([])
+    
     const beachesToggled = useSelector((state: AppState) => state.flagsReducer.beachesFlag)
     const sheltersToggled = useSelector((state: AppState) => state.flagsReducer.sheltersFlag)
-
+    const outdoorSportsToggled = useSelector((state: AppState) => state.flagsReducer.outdoorSportsFlag)
+    const onlyFavsToggled = useSelector((state: AppState) => state.flagsReducer.showOnlyFavoritesFlag)
     // const [onlyFavorites, setOnlyFavorites] = useState(false)
 
 
@@ -39,6 +44,7 @@ const MarkerFactory = ():ReactElement => {
     }
 
     const fetchLocations = async () => {
+        
         try {
             if (beachesToggled && beachesLocations.length < 1) {
                 const response = await axios.get("http://localhost:3001/api/beaches")
@@ -48,6 +54,13 @@ const MarkerFactory = ():ReactElement => {
                 const response = await axios.get("http://localhost:3001/api/shelters")
                 setShelterLocations(response.data)
             }
+
+            if (outdoorSportsToggled && outdoorSportsLocations.length < 1) {
+                const response = await axios.get("http://localhost:3001/api/outdoorsports")
+                setOutdoorSportsLocations(response.data)
+            }
+
+            
 
         } catch (error) {
             console.log("error on fetching locations =>", error);
@@ -78,9 +91,27 @@ const MarkerFactory = ():ReactElement => {
                     return <SheltersElement key={(elem.attributes as ShelterAttributes).oid_mitkan} 
                     attributes={elem.attributes as ShelterAttributes} geometry={elem.geometry}
                     favoriteLocations={favoriteLocations}
+                    onlyFavs={onlyFavsToggled}
                     />})
             }</MarkerClusterGroup>
                 : null
+        }
+
+        {
+            outdoorSportsToggled ?
+            <MarkerClusterGroup zoomToBoundsOnClick>{
+                
+                outdoorSportsLocations.map(elem => {
+                    
+                    return <OutdoorSportsElement key={(elem.attributes as OutDoorSportsAttributes).oid_mitkan} 
+                    attributes={elem.attributes as OutDoorSportsAttributes} geometry={elem.geometry}
+                    favoriteLocations={favoriteLocations}
+                    onlyFavs={onlyFavsToggled}
+                    />})
+            }
+            </MarkerClusterGroup>
+                : null
+
         }
     </>)
 }

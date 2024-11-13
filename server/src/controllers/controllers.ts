@@ -13,7 +13,6 @@ export const addFavorite = async (req: Request, res: Response) => {
             const response = await _getUserByEmail(email)
             const user_id = response.id
             
-        
         if(!user_id) {
              res.status(404).json({message: 'no such user...'})
              return
@@ -118,11 +117,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         const accessToken = jwt.sign(
             {userid: user.id, email: user.email},
             ACCESS_TOKEN_SECRET as string, 
-            {expiresIn: "60s"}
+            {expiresIn: "120s"}
         )
         
         res.cookie("token", accessToken, {
-            maxAge: 60 * 1000,
+            maxAge: 2 * 60 * 1000,
             httpOnly: true
         })
 
@@ -158,7 +157,7 @@ export const verifyAuth = (req: any, res: any) => {
     const accessToken = jwt.sign(
         {id, email},
         ACCESS_TOKEN_SECRET as string,
-        { expiresIn: "60s" }
+        { expiresIn: "120s" }
     )
 
     res.cookie("token", accessToken, {

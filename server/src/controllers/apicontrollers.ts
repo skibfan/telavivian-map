@@ -212,16 +212,13 @@ export const getSheltersApi = async (_: Request, res: Response) => {
 
 
 export const getOutdoorSportsApi = async (_: Request, res: Response) => {
-
+    
     try {
-        
-    } catch (error) {
-        try {
-            const data = await _getOutdoorSportsApi() as GeneralApiResponse;
+        const data = await _getOutdoorSportsApi() as GeneralApiResponse;
             res.json(data.features);
-        } catch (error) {
+    } catch (error) {
             console.error("Failed to fetch shelter data:", error);
             res.status(500).json({ error: "Internal Server Error" });
         }
-    }
+    
 }
