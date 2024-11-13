@@ -31,7 +31,7 @@ const MarkerFactory = ():ReactElement => {
     const fetchfavs = async () => {
         if (await verify()) {
         try {
-            const favResponse = await axios.post("/api/getfavorites", 
+            const favResponse = await axios.post(`${path}/api/getfavorites`, 
                 {},
                 {withCredentials: true}
             )
