@@ -31,9 +31,9 @@ const About = (): ReactElement => {
                     <Typography variant="subtitle1" component="span" sx={{ ml: 1 }}>GitHub</Typography>
                 </Link>
             </Stack>
-            <footer>
-                <Typography variant="body2" sx={{ marginTop: 4, position: "fixed", bottom: 0, textAlign: "center", padding: "10px", justifyContent: ""}}>
-                    © {new Date().getFullYear()} Your Name. All rights reserved.
+            <footer style={{textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <Typography variant="subtitle2" sx={{ marginTop: 4, position: "fixed", width: "100%", bottom: 0, padding: "10px" }}>
+                © 2024 Daniel Skibinskii. All rights reserved.
                 </Typography>
             </footer>
         </Box>
