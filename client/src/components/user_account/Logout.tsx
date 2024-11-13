@@ -5,10 +5,10 @@ import { ReactElement } from "react";
 
 
 const Logout = (): ReactElement => {
-
+  const path = import.meta.env.VITE_MY_PATH
     const handleLogout = async () => {
         try {
-            await axios.get('http://localhost:3001/api/logout', 
+            await axios.get(`${path}/api/logout`, 
             {withCredentials: true})
             window.location.reload()
         } catch (error) {

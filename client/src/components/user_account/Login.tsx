@@ -18,8 +18,9 @@ const Login = (): ReactElement => {
   };
 
   const handleClose = async (email: string, password: string) => {
+    const path = import.meta.env.VITE_MY_PATH
     try {
-       const response = await axios.post('http://localhost:3001/api/login', {
+       const response = await axios.post(`${path}/api/login`, {
             email, password
         }, 
         {withCredentials: true})
