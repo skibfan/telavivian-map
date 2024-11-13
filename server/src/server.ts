@@ -20,6 +20,15 @@ app.listen(process.env.PORT || 3001, () => {
   });
   
   app.use('/api', router)
+
+
+  app.use((req, res, next) => {
+    if (req.path.endsWith('.html')) {
+      res.header("Content-Type", "text/html");
+    }
+    next();
+  });
+  
   // Have Node serve the files for our built React app
   app.use(express.static(path.resolve(__dirname, "./client/dist")));
   app.use(express.static(path.join(__dirname, "/client/dist")));
