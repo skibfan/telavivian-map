@@ -1,9 +1,7 @@
-import L from 'leaflet'
 import { ReactElement } from 'react';
-import { Marker, Polygon, Popup, Tooltip } from 'react-leaflet';
+import {  Polygon, Tooltip } from 'react-leaflet';
 import { BeachAttributes, Geometry } from '../ApiTypes';
 import proj4 from 'proj4';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { MdOutlineSportsVolleyball } from 'react-icons/md';
 import { Stack } from '@mui/material';
 import { FaDog, FaShower, FaSwimmer } from 'react-icons/fa';
