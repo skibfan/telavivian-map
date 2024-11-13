@@ -25,11 +25,11 @@ app.listen(process.env.PORT || 3001, () => {
   
   app.use('/api', router)
   // Have Node serve the files for our built React app
-  app.use(express.static(path.resolve(__dirname, "./client/build")));
-  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.use(express.static(path.resolve(__dirname, "./client/dist")));
+  app.use(express.static(path.join(__dirname, "/client/dist")));
   
   // All other GET requests not handled before will return our React app
   app.get("*", (_, res) => {
-    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
   });
   
