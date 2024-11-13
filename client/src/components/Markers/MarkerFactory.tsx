@@ -9,7 +9,6 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { verify } from "../../auth/Auth";
 import OutdoorSportsElement from "./mini-components/OutdoorSportsElement";
-import dotenv from 'dotenv'
 
 const MarkerFactory = ():ReactElement => {
 
