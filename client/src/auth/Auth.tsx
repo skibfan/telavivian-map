@@ -1,6 +1,5 @@
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import axios from "axios";
-import Login from "../components/user_account/Login";
 
 type AuthProps = {
     children: ReactNode;
