@@ -6,10 +6,9 @@ import axios from "axios";
 import BeachesElement from "./mini-components/BeachesElement";
 import SheltersElement from "./mini-components/SheltersElement";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import 'react-leaflet-markercluster/dist/styles.min.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { verify } from "../../auth/Auth";
 import OutdoorSportsElement from "./mini-components/OutdoorSportsElement";
-
 
 
 const MarkerFactory = ():ReactElement => {
@@ -86,14 +85,17 @@ const MarkerFactory = ():ReactElement => {
         {
             sheltersToggled ?
             // TODO: why this works? 
-            <MarkerClusterGroup zoomToBoundsOnClick>{
+
+            (<MarkerClusterGroup zoomToBoundsOnClick>
+                {
                 shelterLocations.map(elem => {
                     return <SheltersElement key={(elem.attributes as ShelterAttributes).oid_mitkan} 
                     attributes={elem.attributes as ShelterAttributes} geometry={elem.geometry}
                     favoriteLocations={favoriteLocations}
                     onlyFavs={onlyFavsToggled}
                     />})
-            }</MarkerClusterGroup>
+            } 
+            </MarkerClusterGroup>)
                 : null
         }
 
