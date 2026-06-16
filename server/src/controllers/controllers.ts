@@ -122,7 +122,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         
         res.cookie("token", accessToken, {
             maxAge: 2 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict"
         })
 
         
@@ -162,7 +164,9 @@ export const verifyAuth = (req: any, res: any) => {
 
     res.cookie("token", accessToken, {
         maxAge: 60 * 1000,
-        httpOnly: true
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict"
     })
 
     res.json({

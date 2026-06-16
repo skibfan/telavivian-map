@@ -69,12 +69,7 @@ const MarkerFactory = ():ReactElement => {
     useEffect(()=> {
         fetchLocations()
         fetchfavs()
-    }, [beachesToggled, sheltersToggled])
-
-    
-    useEffect(() => {
-        console.log('here=>',favoriteLocations);
-    }, [favoriteLocations])
+    }, [beachesToggled, sheltersToggled, outdoorSportsToggled])
     return (<> 
 
         {
