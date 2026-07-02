@@ -36,8 +36,8 @@ const Login = (): ReactElement => {
 
   return (
     <>
-      <Button variant="contained" 
-      onClick={handleClickOpen}>
+      <Button variant="contained" size="small" onClick={handleClickOpen}
+        sx={{ fontSize: { xs: '0.7rem', sm: '0.875rem' }, px: { xs: 1, sm: 2 } }}>
         Login
       </Button>
       <Dialog
