@@ -4,12 +4,11 @@ body {
   background: rgba(1, 114, 187, 0.15);
 }
 #root {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  /* background: rgba(1, 114, 187, 0.3); */
-  
 }
 
 .card {
@@ -22,28 +21,61 @@ body {
 
 .map-container {
   display: flex;
+  flex-direction: row;
   height: 100vh;
   margin: 20px;
 }
 .map-container > * {
-  flex: 1;
   padding: 20px;
+  box-sizing: border-box;
 }
 
+
 .map-container > :first-child {
-  flex: 3;
+  flex: 1;
+  min-width: 0;
+}
+
+.map-element {
+  height: 500px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .map-element {
+    height: 350px;
+  }
 }
 .map-container > :last-child {
-  flex: 1;
+  width: 260px;
+  flex-shrink: 0;
   overflow-y: auto;
-} 
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 0;
+  }
+  .map-container {
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+    margin-top: 10vh;
+  }
+  .map-container > :first-child {
+    flex: none;
+  }
+  .map-container > :last-child {
+    width: 100%;
+  }
+}
 
 
 #header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 40px;
   z-index: 1000; 
   background-color: #fff;

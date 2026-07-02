@@ -7,21 +7,16 @@ import Register from "./user_account/Register"
 
 const Header = () => {
     return(<div id="header">
-<Stack spacing={2} direction={"row"} justifyContent={"space-between"}>
-    <Stack spacing={2} direction={"row"} >
-        {/* <Button>Dashboard</Button> */}
-        {/* <Button LinkComponent={Link} to='/'>Dashboard</Button> */}
-        
-        <Button component={Link} to='/'>Dashboard</Button>
-        <Button component={Link} to='/about'>About</Button>
-        
+<Stack spacing={{ xs: 0.5, sm: 2 }} direction={"row"} justifyContent={"space-between"}>
+    <Stack spacing={{ xs: 0.5, sm: 2 }} direction={"row"}>
+        <Button component={Link} to='/' size="small" sx={{ fontSize: { xs: '0.7rem', sm: '0.875rem' }, px: { xs: 1, sm: 2 } }}>Dashboard</Button>
+        <Button component={Link} to='/about' size="small" sx={{ fontSize: { xs: '0.7rem', sm: '0.875rem' }, px: { xs: 1, sm: 2 } }}>About</Button>
     </Stack>
-    <Stack  id="login-register" spacing={2} direction={'row'}> 
-            {/* <Login/> */}
-            <Auth placeholder={<Login />}><Logout/></Auth>
-            <Register />
-        </Stack>
+    <Stack id="login-register" spacing={{ xs: 0.5, sm: 2 }} direction={'row'}>
+        <Auth placeholder={<Login />}><Logout/></Auth>
+        <Register />
     </Stack>
+</Stack>
     </div>)
 }
 
