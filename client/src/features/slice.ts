@@ -5,9 +5,6 @@ type BeachFilters = {
     parking: boolean;
     volleyball: boolean;
     waterSport: boolean;
-    cafeteria: boolean;
-    lighting: boolean;
-    playground: boolean;
     showers: boolean;
 }
 
@@ -31,9 +28,6 @@ const initialState: InitialStateT = {
         parking: false,
         volleyball: false,
         waterSport: false,
-        cafeteria: false,
-        lighting: false,
-        playground: false,
         showers: false,
     },
     availableSportTypes: [],

@@ -5,17 +5,13 @@ import { AppState } from "../app/store";
 import { toggle_beaches, toggle_only_favs, toggle_outdoor_sports, toggle_shelters, toggle_beach_filter, toggle_sport_type } from "../features/slice";
 import Auth from "../auth/Auth";
 import { FaDog, FaParking, FaShower, FaSwimmer } from "react-icons/fa";
-import { MdOutlineSportsVolleyball, MdLightbulbOutline, MdOutlinePark } from "react-icons/md";
-import { GrCafeteria } from "react-icons/gr";
+import { MdOutlineSportsVolleyball } from "react-icons/md";
 
 const beachFilterConfig = [
     { key: 'dogsAllowed' as const,  label: 'Dogs',       icon: <FaDog /> },
     { key: 'parking'     as const,  label: 'Parking',    icon: <FaParking /> },
-    { key: 'volleyball'  as const,  label: 'Volleyball', icon: <MdOutlineSportsVolleyball /> },
+    { key: 'volleyball'  as const,  label: 'Beach Sports', icon: <MdOutlineSportsVolleyball /> },
     { key: 'waterSport'  as const,  label: 'Water sport',icon: <FaSwimmer /> },
-    { key: 'cafeteria'   as const,  label: 'Cafeteria',  icon: <GrCafeteria /> },
-    { key: 'lighting'    as const,  label: 'Lighting',   icon: <MdLightbulbOutline /> },
-    { key: 'playground'  as const,  label: 'Playground', icon: <MdOutlinePark /> },
     { key: 'showers'     as const,  label: 'Showers',    icon: <FaShower /> },
 ]
 

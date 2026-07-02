@@ -35,7 +35,7 @@ const BeachesElement = ({attributes, geometry}: BeachesElementProps): ReactEleme
                     {attributes.water_sport === 'יש' ? <FaSwimmer style={{color: "green"}} /> : <FaSwimmer style={{color: "red"}}/>}
                     {attributes.cafeteria === 'יש' ? <GrCafeteria style={{color: "green"}}/> : <GrCafeteria style={{color: "red"}}/>}
                     {attributes.Dogs_allowed ? <FaDog style={{color: "green"}}/> : <FaDog style={{color: "red"}}/>}
-                    {attributes.Parking === 'יש' ? <FaParking style={{color: "green"}}/> : <FaParking style={{color: "red"}}/>}
+                    {attributes.Parking.trim() === 'חניון חופשי' ? <FaParking style={{color: "green"}}/> : <FaParking style={{color: "red"}}/>}
                 </Stack>
             </Tooltip>
         </Polygon>

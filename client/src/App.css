@@ -26,17 +26,17 @@ body {
   margin: 20px;
 }
 .map-container > * {
-  flex: 1;
   padding: 20px;
 }
 
 .map-container > :first-child {
-  flex: 3;
+  flex: 1;
 }
 .map-container > :last-child {
-  flex: 1;
+  width: 260px;
+  flex-shrink: 0;
   overflow-y: auto;
-} 
+}
 
 
 #header {

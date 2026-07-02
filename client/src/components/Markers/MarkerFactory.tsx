@@ -74,12 +74,9 @@ const MarkerFactory = ():ReactElement => {
     const filteredBeaches = beachesLocations.filter(elem => {
         const a = elem.attributes as BeachAttributes
         if (beachFilters.dogsAllowed && !a.Dogs_allowed) return false
-        if (beachFilters.parking && a.Parking !== 'יש') return false
+        if (beachFilters.parking && a.Parking.trim() !==  'חניון חופשי') return false
         if (beachFilters.volleyball && a.beach_volleyball !== 'יש') return false
         if (beachFilters.waterSport && a.water_sport !== 'יש') return false
-        if (beachFilters.cafeteria && a.cafeteria !== 'יש') return false
-        if (beachFilters.lighting && a.Lighting !== 'יש') return false
-        if (beachFilters.playground && a.playground !== 'יש') return false
         if (beachFilters.showers && a.showers_desc === 'אין') return false
         return true
     })
